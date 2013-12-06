@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.prodyna.esd.filemanager.event.DirectoryAddedEvent;
 import com.prodyna.esd.filemanager.event.DirectoryRemovedEvent;
+import com.prodyna.esd.filemanager.event.EventMediator;
 import com.prodyna.esd.filemanager.event.FileAddedEvent;
 import com.prodyna.esd.filemanager.event.FileRemovedEvent;
 import com.prodyna.esd.filemanager.event.FileSystemEvent;
@@ -88,8 +89,11 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 			event = new FileRemovedEvent(fileSystemElement, this);
 		} else if (fileSystemElement instanceof Directory) {
 			event = new DirectoryRemovedEvent(fileSystemElement, this);
+		} else {
+			event = null;
 		}
-		// TODO Send event.
+
+		EventMediator.getInstance().notifyListeners(event);
 	}
 
 	private void sendAddEvent(FileSystemElement fileSystemElement) {
@@ -98,8 +102,10 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 			event = new FileAddedEvent(fileSystemElement, this);
 		} else if (fileSystemElement instanceof Directory) {
 			event = new DirectoryAddedEvent(fileSystemElement, this);
+		} else {
+			event = null;
 		}
-		// TODO Send event.
+		EventMediator.getInstance().notifyListeners(event);
 	}
 
 	@Override
