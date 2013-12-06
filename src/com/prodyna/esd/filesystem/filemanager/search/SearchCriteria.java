@@ -16,6 +16,6 @@ package com.prodyna.esd.filesystem.filemanager.search;
  */
 public interface SearchCriteria<T> {
 
-	boolean match(T element);
+	boolean matches(T element);
 
 }

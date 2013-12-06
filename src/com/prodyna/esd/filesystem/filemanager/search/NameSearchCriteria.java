@@ -31,7 +31,7 @@ public class NameSearchCriteria<T> implements SearchCriteria<T> {
      * @param textFile2
      * @return
      */
-    public boolean match(T file) {
+    public boolean matches(T file) {
         // TODO Auto-generated method stub
         return false;
     }

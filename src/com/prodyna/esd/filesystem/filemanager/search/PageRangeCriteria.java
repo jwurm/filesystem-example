@@ -27,7 +27,7 @@ public class PageRangeCriteria<T> implements SearchCriteria<T>{
      * @see com.prodyna.esd.filesystem.filemanager.search.SearchCriteria#match(java.lang.Object)
      */
     @Override
-    public boolean match(T element) {
+    public boolean matches(T element) {
         // TODO Auto-generated method stub
         return false;
     }

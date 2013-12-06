@@ -22,7 +22,7 @@ public class FileSearchVisitor extends SearchVisitor<FileSystemElement> {
 
 	@Override
 	public void visit(ArchiveFile archiveFileImpl) {
-		match(archiveFileImpl);
+		matches(archiveFileImpl);
 	}
 
 	@Override
@@ -32,12 +32,12 @@ public class FileSearchVisitor extends SearchVisitor<FileSystemElement> {
 
 	@Override
 	public void visit(ImageFile imageFileImpl) {
-		match(imageFileImpl);
+		matches(imageFileImpl);
 	}
 
 	@Override
 	public void visit(TextDocument textFileImpl) {
-		match(textFileImpl);
+		matches(textFileImpl);
 	}
 
 }

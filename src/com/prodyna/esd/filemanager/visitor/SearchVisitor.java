@@ -29,8 +29,8 @@ public abstract class SearchVisitor<T extends FileSystemElement> extends
 		return matches;
 	}
 
-	protected void match(T element) {
-		if (criteria.match(element)) {
+	protected void matches(T element) {
+		if (criteria.matches(element)) {
 			matches.add(element);
 		}
 	}
