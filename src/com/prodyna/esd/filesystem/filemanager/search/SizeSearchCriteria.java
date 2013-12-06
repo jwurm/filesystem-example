@@ -1,6 +1,8 @@
 package com.prodyna.esd.filesystem.filemanager.search;
 
-public class SizeSearchCriteria<T> {
+import com.prodyna.esd.filemanager.model.TextDocument;
+
+public class SizeSearchCriteria<T> implements SearchCriteria<T> {
 
 	public T min(int i) {
 		// TODO Auto-generated method stub
@@ -10,6 +12,11 @@ public class SizeSearchCriteria<T> {
 	public T max(int i) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean matches(T element) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
