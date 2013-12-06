@@ -4,6 +4,7 @@
 package com.prodyna.esd.filemanager;
 
 import com.prodyna.esd.filemanager.model.Directory;
+import com.prodyna.esd.filemanager.model.FileSystemElement;
 import com.prodyna.esd.filemanager.model.ImageFile;
 import com.prodyna.esd.filemanager.model.ImageType;
 import com.prodyna.esd.filemanager.model.TextDocument;
@@ -36,9 +37,6 @@ public interface FileSystemManager {
 	ImageFile addImageFile(String string, Directory directory, int i,
 			ImageType gif, int j, int k);
 
-	void removeFileSystemElement(TextDocument textDocument);
+	void removeFileSystemElement(FileSystemElement fse);
 
-	void removeFileSystemElement(ImageFile imageFile);
-
-	void removeFileSystemElement(Directory directory);
 }
