@@ -3,7 +3,6 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
-import com.prodyna.esd.filemanager.model.TextDocument;
 
 /**
  * 
@@ -21,7 +20,7 @@ public class SearchCriteriaBuilder<T>  {
      * @param criteria1
      * @return
      */
-    public SearchCriteriaBuilder set(SearchCriteria<TextDocument> criteria1) {
+    public SearchCriteriaBuilder<T> set(SearchCriteria<T> criteria1) {
         // TODO Auto-generated method stub
         return this;
     }
@@ -30,7 +29,7 @@ public class SearchCriteriaBuilder<T>  {
      * @param criteria2
      * @return
      */
-    public SearchCriteriaBuilder and(SearchCriteria<TextDocument> criteria2) {
+    public SearchCriteriaBuilder<T> and(SearchCriteria<T> criteria2) {
         // TODO Auto-generated method stub
         return this;
     }
@@ -38,7 +37,7 @@ public class SearchCriteriaBuilder<T>  {
     /**
      * @return
      */
-    public SearchCriteria<TextDocument> getSearchCriteria() {
+    public SearchCriteria<T> getSearchCriteria() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -47,7 +46,7 @@ public class SearchCriteriaBuilder<T>  {
      * @param criteria2
      * @return
      */
-    public SearchCriteriaBuilder or(SearchCriteria<TextDocument> criteria2) {
+    public SearchCriteriaBuilder<T> or(SearchCriteria<T> criteria2) {
         // TODO Auto-generated method stub
         return this;
     }

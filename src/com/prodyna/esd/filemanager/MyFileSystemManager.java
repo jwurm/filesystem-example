@@ -22,6 +22,7 @@ import com.prodyna.esd.filemanager.model.impl.ImageFileImpl;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
 import com.prodyna.esd.filemanager.observer.FileSystemListener;
+import com.prodyna.esd.filemanager.visitor.FileSearchVisitor;
 import com.prodyna.esd.filemanager.visitor.SearchVisitor;
 import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
 
@@ -122,8 +123,8 @@ public class MyFileSystemManager implements FileSystemManager{
      * @param andSearchCriteria
      * @return
      */
-    public Set<TextDocument> findTextFiles(SearchCriteria<TextDocument> criteria) {
-        SearchVisitor<TextDocument> visitor = new SearchVisitor<>(criteria);
+    public Set<TextDocument> findTextFiles(SearchCriteria<FileSystemElement> criteria) {
+        FileSearchVisitor visitor = new FileSearchVisitor(criteria);
         getRoot().accept(visitor);
         List<FileSystemElement> matches = visitor.getMatches();
         //TODO generics korrigieren
