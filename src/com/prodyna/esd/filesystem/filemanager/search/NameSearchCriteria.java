@@ -17,7 +17,7 @@ import com.prodyna.esd.filemanager.model.TextDocument;
  * 
  *         Beschreibung: 
  */
-public class NameSearchCriteria<T> implements SearchCriteria {
+public class NameSearchCriteria<T> implements SearchCriteria<T> {
 
     /**
      * @param string
@@ -31,7 +31,7 @@ public class NameSearchCriteria<T> implements SearchCriteria {
      * @param textFile2
      * @return
      */
-    public boolean matches(FileSystemElement textFile2) {
+    public boolean match(T file) {
         // TODO Auto-generated method stub
         return false;
     }

@@ -3,7 +3,7 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
-import com.prodyna.esd.filemanager.model.FileSystemElement;
+
 
 /**
  * 
@@ -16,6 +16,6 @@ import com.prodyna.esd.filemanager.model.FileSystemElement;
  */
 public interface SearchCriteria<T> {
 
-	boolean match(FileSystemElement element);
+	boolean match(T element);
 
 }
