@@ -22,7 +22,7 @@ public abstract class SearchVisitor<T extends FileSystemElement> extends
 
 	public SearchVisitor(SearchCriteria<T> criteria) {
 		this.criteria = criteria;
-		matches = new ArrayList<>();
+		matches = new ArrayList<T>();
 	}
 
 	public List<T> getMatches() {
