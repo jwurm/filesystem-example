@@ -1,5 +1,22 @@
 package com.prodyna.esd.filemanager.event;
 
-public class DirectoryRemovedEvent extends FileSystemEvent {
+/**
+ * 
+ * @author jtrumpfheller
+ *
+ */
+public class DirectoryRemovedEvent implements FileSystemEvent {
+
+	@Override
+	public Object getSubject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getOriginator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
