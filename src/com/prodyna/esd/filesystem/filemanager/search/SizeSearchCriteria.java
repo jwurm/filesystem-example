@@ -4,12 +4,12 @@ import com.prodyna.esd.filemanager.model.TextDocument;
 
 public class SizeSearchCriteria<T> implements SearchCriteria<T> {
 
-	public T min(int i) {
+	public SizeSearchCriteria<T> min(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public T max(int i) {
+	public SizeSearchCriteria<T> max(int i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
