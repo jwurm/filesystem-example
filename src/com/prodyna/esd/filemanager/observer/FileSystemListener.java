@@ -3,6 +3,8 @@
  */
 package com.prodyna.esd.filemanager.observer;
 
+import com.prodyna.esd.filemanager.event.FileSystemEvent;
+
 /**
  * 
  * <b>Project:</b> filesystem-example</br> <b>Classname:</b>
@@ -14,5 +16,7 @@ package com.prodyna.esd.filemanager.observer;
  *         Beschreibung: 
  */
 public interface FileSystemListener {
+
+	void eventCallback(FileSystemEvent event);
 
 }

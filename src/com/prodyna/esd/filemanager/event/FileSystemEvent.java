@@ -14,4 +14,14 @@ package com.prodyna.esd.filemanager.event;
  *         Beschreibung: 
  */
 public class FileSystemEvent {
+
+	public Object getSubject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getOriginator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

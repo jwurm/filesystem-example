@@ -13,7 +13,6 @@ import com.prodyna.esd.filemanager.model.ImageType;
 import com.prodyna.esd.filemanager.model.TextDocument;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
 import com.prodyna.esd.filemanager.observer.FileSystemListener;
-import com.prodyna.esd.filemanager.observer.FileSystemManager;
 import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
 
 /**
@@ -111,4 +110,41 @@ public class MyFileSystemManager implements FileSystemManager{
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public void removeListener(FileSystemListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Directory addDirectory(String string, Object root) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TextDocument addTextFile(String string, Object root, int i,
+			TextEncoding utf8, int j) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeFileSystemElement(TextDocument textDocument) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFileSystemElement(ImageFile imageFile) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeFileSystemElement(Directory directory) {
+		// TODO Auto-generated method stub
+		
+	}
 }

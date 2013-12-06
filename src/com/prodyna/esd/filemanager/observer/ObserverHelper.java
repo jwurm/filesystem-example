@@ -3,6 +3,9 @@
  */
 package com.prodyna.esd.filemanager.observer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.prodyna.esd.filemanager.event.FileSystemEvent;
 
 /**
@@ -17,27 +20,42 @@ import com.prodyna.esd.filemanager.event.FileSystemEvent;
  */
 public class ObserverHelper {
 
+	private List<FileSystemListener> listeners;
+	
     /**
      * @param listener
      */
     public void addListener(FileSystemListener listener) {
-        // TODO Auto-generated method stub
-        
+    	
+    	if (listeners == null){
+    		listeners = new ArrayList<FileSystemListener>();
+    	}
+    	
+    	listeners.add(listener);
     }
 
     /**
      * @param event
      */
     public void notifyListeners(FileSystemEvent event) {
-        // TODO Auto-generated method stub
-        
+      
+    	if (listeners == null){
+    		return;
+    	}
+    	
+    	for (FileSystemListener listener : listeners) {
+		}
     }
 
     /**
      * @param listener
      */
     public void removeListener(FileSystemListener listener) {
-        // TODO Auto-generated method stub
+    	
+    	if (listeners == null){
+    		return;
+    	}
         
+    	listeners.remove(listener);
     }
 }
