@@ -98,8 +98,8 @@ public class MyFileSystemManager implements FileSystemManager{
      */
     @Override
     public void addListener(FileSystemListener fileSystemListener) {
-        // TODO Auto-generated method stub
-        
+        Directory root = getRoot();
+        root.addListener(fileSystemListener);
     }
 
     /**
@@ -113,8 +113,8 @@ public class MyFileSystemManager implements FileSystemManager{
 
 	@Override
 	public void removeListener(FileSystemListener listener) {
-		// TODO Auto-generated method stub
-		
+        Directory root = getRoot();
+        root.removeListener(listener);
 	}
 
 	@Override
