@@ -3,20 +3,11 @@ package com.prodyna.esd.filemanager.event;
 /**
  * 
  * @author jtrumpfheller
- *
+ * 
  */
-public class FileAddedEvent implements FileSystemEvent {
+public class FileAddedEvent extends AbstractFileSystemEvent {
 
-	@Override
-	public Object getSubject() {
-		// TODO Auto-generated method stub
-		return null;
+	public FileAddedEvent(Object subject, Object originator) {
+		super(subject, originator);
 	}
-
-	@Override
-	public Object getOriginator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

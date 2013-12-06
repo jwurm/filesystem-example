@@ -3,20 +3,12 @@ package com.prodyna.esd.filemanager.event;
 /**
  * 
  * @author jtrumpfheller
- *
+ * 
  */
-public class DirectoryRemovedEvent implements FileSystemEvent {
+public class DirectoryRemovedEvent extends AbstractFileSystemEvent {
 
-	@Override
-	public Object getSubject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object getOriginator() {
-		// TODO Auto-generated method stub
-		return null;
+	public DirectoryRemovedEvent(Object subject, Object originator) {
+		super(subject, originator);
 	}
 
 }
