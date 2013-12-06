@@ -44,6 +44,7 @@ public class ObserverHelper {
     	}
     	
     	for (FileSystemListener listener : listeners) {
+    		listener.eventCallback(event);
 		}
     }
 
