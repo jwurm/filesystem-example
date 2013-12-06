@@ -24,7 +24,7 @@ public class ArchiveFileImpl extends FileImpl implements ArchiveFile {
 	 * @param compresionType
 	 * @param uncompressed
 	 */
-	ArchiveFileImpl(String name, Directory parent, long size, CompressionType compresionType, long uncompressed) {
+	public ArchiveFileImpl(String name, Directory parent, long size, CompressionType compresionType, long uncompressed) {
 		super(name, parent, size);
 		this.compresionType = compresionType;
 		this.uncompressed = uncompressed;

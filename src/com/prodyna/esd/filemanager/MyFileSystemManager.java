@@ -3,14 +3,20 @@
  */
 package com.prodyna.esd.filemanager;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
 import com.prodyna.esd.filemanager.model.Directory;
+import com.prodyna.esd.filemanager.model.FileSystemElement;
 import com.prodyna.esd.filemanager.model.ImageFile;
 import com.prodyna.esd.filemanager.model.ImageType;
 import com.prodyna.esd.filemanager.model.TextDocument;
+import com.prodyna.esd.filemanager.model.impl.ArchiveFileImpl;
+import com.prodyna.esd.filemanager.model.impl.DirectoryImpl;
+import com.prodyna.esd.filemanager.model.impl.ImageFileImpl;
+import com.prodyna.esd.filemanager.model.impl.TextFileImpl;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
 import com.prodyna.esd.filemanager.observer.FileSystemListener;
 import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
@@ -27,62 +33,65 @@ import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
  */
 public class MyFileSystemManager implements FileSystemManager{
 
+    private Directory root;
+
     /**
      * @return
      */
     public Directory getRoot() {
-        // TODO Auto-generated method stub
-        return null;
+        return root;
     }
 
     /**
-     * @param string
-     * @param root
+     * @param name
+     * @param parent
      * @return
      */
-    public Directory addDirectory(String string, Directory root) {
-        // TODO Auto-generated method stub
-        return null;
+    public Directory addDirectory(String name, Directory parent) {
+        return new DirectoryImpl(name, parent, new ArrayList<FileSystemElement>());
     }
 
     /**
-     * @param string
-     * @param root
-     * @param i
-     * @param jar
-     * @param j
+     * @param name
+     * @param parent
+     * @param size
+     * @param compressionType
+     * @param uncompressedSize
      * @return
      */
-    public ArchiveFile addArchiveFile(String string, Directory root, int i, CompressionType jar, int j) {
-        // TODO Auto-generated method stub
-        return null;
+    public ArchiveFile addArchiveFile(String name, Directory parent, int size, CompressionType compressionType, int uncompressedSize) {
+        ArchiveFileImpl ret = new ArchiveFileImpl(name, parent, size, compressionType, uncompressedSize);
+        parent.add(ret);
+        return ret;
     }
 
     /**
-     * @param string
-     * @param root
-     * @param i
-     * @param gif
-     * @param j
+     * @param name
+     * @param parent
+     * @param size
+     * @param type
+     * @param width
      * @param k
      * @return
      */
-    public ImageFile addImageFile(String string, Directory root, int i, ImageType gif, int j, int k) {
-        // TODO Auto-generated method stub
-        return null;
+    public ImageFile addImageFile(String name, Directory parent, int size, ImageType type, int width, int height) {
+        ImageFileImpl ret = new ImageFileImpl(name, parent, size, type, width, height);
+        parent.add(ret);
+        return ret;
     }
 
     /**
-     * @param string
+     * @param name
      * @param directory
-     * @param i
-     * @param utf8
+     * @param size
+     * @param encoding
      * @param numberOfPages
      * @return 
      */
-    public TextDocument addTextFile(String string, Directory directory, int i, TextEncoding utf8, long numberOfPages) {
-        // TODO Auto-generated method stub
-        return null;
+    public TextDocument addTextFile(String name, Directory directory, int size, TextEncoding encoding, long numberOfPages) {
+        TextFileImpl ret = new TextFileImpl(name, directory, size, encoding, numberOfPages);
+        directory.add(ret);
+        return ret;
     }
 
     /**
@@ -98,8 +107,8 @@ public class MyFileSystemManager implements FileSystemManager{
      */
     @Override
     public void addListener(FileSystemListener fileSystemListener) {
-        // TODO Auto-generated method stub
-        
+        Directory root = getRoot();
+        root.addListener(fileSystemListener);
     }
 
     /**
@@ -113,25 +122,15 @@ public class MyFileSystemManager implements FileSystemManager{
 
 	@Override
 	public void removeListener(FileSystemListener listener) {
+        Directory root = getRoot();
+        root.removeListener(listener);
+	}
+
+	@Override
+	public void removeFileSystemElement(FileSystemElement fse) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void removeFileSystemElement(TextDocument textDocument) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void removeFileSystemElement(ImageFile imageFile) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeFileSystemElement(Directory directory) {
-		// TODO Auto-generated method stub
-		
-	}
 }
