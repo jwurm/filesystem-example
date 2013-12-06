@@ -22,14 +22,11 @@ import com.prodyna.esd.filemanager.observer.FileSystemListener;
  */
 public interface FileSystemManager {
 
-    /**
-     * @param fileSystemListener
-     */
     void addListener(FileSystemListener fileSystemListener);
 
 	void removeListener(FileSystemListener listener);
 
-	Object getRoot();
+	Directory getRoot();
 
 	Directory addDirectory(String string, Directory root);
 
