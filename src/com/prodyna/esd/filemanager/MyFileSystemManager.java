@@ -3,6 +3,8 @@
  */
 package com.prodyna.esd.filemanager;
 
+import java.util.Set;
+
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
 import com.prodyna.esd.filemanager.model.Directory;
@@ -10,6 +12,9 @@ import com.prodyna.esd.filemanager.model.ImageFile;
 import com.prodyna.esd.filemanager.model.ImageType;
 import com.prodyna.esd.filemanager.model.TextDocument;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
+import com.prodyna.esd.filemanager.observer.FileSystemListener;
+import com.prodyna.esd.filemanager.observer.FileSystemManager;
+import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
 
 /**
  * 
@@ -21,7 +26,7 @@ import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
  * 
  *         Beschreibung: 
  */
-public class MyFileSystemManager {
+public class MyFileSystemManager implements FileSystemManager{
 
     /**
      * @return
@@ -87,5 +92,23 @@ public class MyFileSystemManager {
     public void list() {
         // TODO Auto-generated method stub
         
+    }
+
+    /* (non-Javadoc)
+     * @see com.prodyna.esd.filemanager.observer.FileSystemManager#addListener(com.prodyna.esd.filemanager.observer.FileSystemListener)
+     */
+    @Override
+    public void addListener(FileSystemListener fileSystemListener) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * @param andSearchCriteria
+     * @return
+     */
+    public Set<TextDocument> findTextFiles(SearchCriteria<TextDocument> andSearchCriteria) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

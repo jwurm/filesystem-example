@@ -3,6 +3,10 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
+import com.prodyna.esd.filemanager.model.FileSystemElement;
+import com.prodyna.esd.filemanager.model.ImageFile;
+import com.prodyna.esd.filemanager.model.TextDocument;
+
 /**
  * 
  * <b>Project:</b> filesystem-example</br> <b>Classname:</b>
@@ -13,5 +17,22 @@ package com.prodyna.esd.filesystem.filemanager.search;
  * 
  *         Beschreibung: 
  */
-public class NameSearchCriteria {
+public class NameSearchCriteria<T> implements SearchCriteria {
+
+    /**
+     * @param string
+     */
+    public NameSearchCriteria(String string) {
+        // TODO Auto-generated constructor stub
+    }
+
+    
+    /**
+     * @param textFile2
+     * @return
+     */
+    public boolean matches(FileSystemElement textFile2) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

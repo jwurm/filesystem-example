@@ -13,5 +13,5 @@ package com.prodyna.esd.filesystem.filemanager.search;
  * 
  *         Beschreibung: 
  */
-public class SearchCriteria {
+public interface SearchCriteria<T> {
 }

@@ -13,5 +13,13 @@ package com.prodyna.esd.filesystem.filemanager.search;
  * 
  *         Beschreibung: 
  */
-public class PageRangeCriteria {
+public class PageRangeCriteria<T> implements SearchCriteria{
+
+    /**
+     * @param i
+     * @param j
+     */
+    public PageRangeCriteria(int i, int j) {
+        // TODO Auto-generated constructor stub
+    }
 }
