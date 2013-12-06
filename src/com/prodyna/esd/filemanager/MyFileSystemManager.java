@@ -118,19 +118,6 @@ public class MyFileSystemManager implements FileSystemManager{
 	}
 
 	@Override
-	public Directory addDirectory(String string, Object root) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TextDocument addTextFile(String string, Object root, int i,
-			TextEncoding utf8, int j) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void removeFileSystemElement(TextDocument textDocument) {
 		// TODO Auto-generated method stub
 		

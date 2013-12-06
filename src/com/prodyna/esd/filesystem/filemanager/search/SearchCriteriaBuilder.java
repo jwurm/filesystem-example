@@ -15,7 +15,7 @@ import com.prodyna.esd.filemanager.model.TextDocument;
  * 
  *         Beschreibung: 
  */
-public class SearchCriteriaBuilder<T> implements SearchCriteria {
+public class SearchCriteriaBuilder<T>  {
 
     /**
      * @param criteria1
@@ -51,4 +51,5 @@ public class SearchCriteriaBuilder<T> implements SearchCriteria {
         // TODO Auto-generated method stub
         return this;
     }
+
 }

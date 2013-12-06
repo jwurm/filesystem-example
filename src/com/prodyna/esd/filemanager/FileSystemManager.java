@@ -31,10 +31,10 @@ public interface FileSystemManager {
 
 	Object getRoot();
 
-	Directory addDirectory(String string, Object root);
+	Directory addDirectory(String string, Directory root);
 
-	TextDocument addTextFile(String string, Object root, int i,
-			TextEncoding utf8, int j);
+	TextDocument addTextFile(String string, Directory root, int i,
+			TextEncoding utf8, long j);
 
 	ImageFile addImageFile(String string, Directory directory, int i,
 			ImageType gif, int j, int k);
