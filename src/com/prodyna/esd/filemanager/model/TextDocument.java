@@ -13,6 +13,5 @@ public interface TextDocument extends File {
 
 	TextEncoding getEncoding();
 	long getNumberOfPages();
-	void max(int i);
 
 }
