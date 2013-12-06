@@ -5,6 +5,8 @@ package com.prodyna.esd.filemanager.visitor;
 
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.Directory;
+import com.prodyna.esd.filemanager.model.ImageFile;
+import com.prodyna.esd.filemanager.model.TextDocument;
 
 /**
  * 
@@ -41,4 +43,14 @@ public class FileSystemElementVisitor {
         // TODO Auto-generated method stub
         
     }
+
+    /**
+     * @param textFileImpl
+     */
+    public void visit(TextDocument textFileImpl) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
 }
