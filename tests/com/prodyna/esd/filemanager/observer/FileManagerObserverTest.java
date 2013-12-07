@@ -43,9 +43,7 @@ public class FileManagerObserverTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.prodyna.esd.filemanager.observer.ObserverHelper#addListener(com.prodyna.esd.filemanager.observer.FileSystemListener)}
-	 * .
+	 * Test method for {@link com.prodyna.esd.filemanager.observer.ObserverHelper#addListener(com.prodyna.esd.filemanager.observer.FileSystemListener)}.
 	 */
 	@Test
 	public void testAddListener() {
@@ -62,9 +60,7 @@ public class FileManagerObserverTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.prodyna.esd.filemanager.observer.ObserverHelper#removeListener(com.prodyna.esd.filemanager.observer.FileSystemListener)}
-	 * .
+	 * Test method for {@link com.prodyna.esd.filemanager.observer.ObserverHelper#removeListener(com.prodyna.esd.filemanager.observer.FileSystemListener)}.
 	 */
 	@Test
 	public void testRemoveListener() {
@@ -78,9 +74,7 @@ public class FileManagerObserverTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link com.prodyna.esd.filemanager.observer.ObserverHelper#notifyListeners(com.prodyna.esd.filemanager.event.FileSystemEvent)}
-	 * .
+	 * Test method for {@link com.prodyna.esd.filemanager.observer.ObserverHelper#notifyListeners(com.prodyna.esd.filemanager.event.FileSystemEvent)}.
 	 */
 	@Test
 	public void testNotifyListeners() {
@@ -92,39 +86,34 @@ public class FileManagerObserverTest {
 			}
 		};
 		manager.addListener(listener);
-
+		
 		// Adding directory
-		Directory directory = manager
-				.addDirectory("Testdir", manager.getRoot());
+		Directory directory = manager.addDirectory("Testdir", manager.getRoot());
 
 		// Adding files
-		TextDocument textDocument = manager.addTextFile("text",
-				manager.getRoot(), 1000, TextEncoding.UTF8, 10);
-		ImageFile imageFile = manager.addImageFile("image", directory, 1000,
-				ImageType.GIF, 640, 480);
-
+		TextDocument textDocument = manager.addTextFile("text", manager.getRoot(), 1000, TextEncoding.UTF8, 10);
+		ImageFile imageFile = manager.addImageFile("image", directory, 1000, ImageType.GIF, 640, 480);
+		
 		// Removing files
 		manager.removeFileSystemElement(textDocument);
 		manager.removeFileSystemElement(imageFile);
 
 		// Removing directory
 		manager.removeFileSystemElement(directory);
-
+		
+		
 		// Deregister
 		manager.removeListener(listener);
-
+		
 		// Check the events.
-		Assert.assertEquals(NUMBER_OF_EVENTS + " events should have occurred",
-				NUMBER_OF_EVENTS, eventsOccurred.size());
-
+		Assert.assertEquals(NUMBER_OF_EVENTS + " events should have occurred", NUMBER_OF_EVENTS, eventsOccurred.size());
+		
 		Assert.assertEquals(directory, eventsOccurred.get(0).getSubject());
-		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(0)
-				.getOriginator());
+		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(0).getOriginator());
 		Assert.assertTrue(eventsOccurred.get(0) instanceof DirectoryAddedEvent);
 
 		Assert.assertEquals(textDocument, eventsOccurred.get(1).getSubject());
-		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(1)
-				.getOriginator());
+		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(1).getOriginator());
 		Assert.assertTrue(eventsOccurred.get(1) instanceof FileAddedEvent);
 
 		Assert.assertEquals(imageFile, eventsOccurred.get(2).getSubject());
@@ -132,8 +121,7 @@ public class FileManagerObserverTest {
 		Assert.assertTrue(eventsOccurred.get(2) instanceof FileAddedEvent);
 
 		Assert.assertEquals(textDocument, eventsOccurred.get(3).getSubject());
-		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(3)
-				.getOriginator());
+		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(3).getOriginator());
 		Assert.assertTrue(eventsOccurred.get(3) instanceof FileRemovedEvent);
 
 		Assert.assertEquals(imageFile, eventsOccurred.get(4).getSubject());
@@ -141,10 +129,9 @@ public class FileManagerObserverTest {
 		Assert.assertTrue(eventsOccurred.get(4) instanceof FileRemovedEvent);
 
 		Assert.assertEquals(directory, eventsOccurred.get(5).getSubject());
-		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(5)
-				.getOriginator());
+		Assert.assertEquals(manager.getRoot(), eventsOccurred.get(5).getOriginator());
 		Assert.assertTrue(eventsOccurred.get(5) instanceof DirectoryRemovedEvent);
-
+		
 	}
 
 }
