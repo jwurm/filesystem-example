@@ -20,8 +20,13 @@ public class CommandManager {
 		// get last command
 		Command command = commandStack.pop();
 		
+		// null safety
+		if (command == null){
+			return;
+		}
+		
 		// undo
 		command.revert();
-		
 	}
+	
 }
