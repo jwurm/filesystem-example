@@ -3,8 +3,7 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +35,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMin() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<TextDocument>();
+		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
 		criteria.min(110);
 		Assert.assertFalse(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
@@ -45,7 +44,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMax() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<TextDocument>();
+		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
 		criteria.max(250);
 		Assert.assertTrue(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
@@ -54,7 +53,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMinMax() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<TextDocument>();
+		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
 		criteria.min(110).max(220);
 		Assert.assertFalse(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
