@@ -58,8 +58,10 @@ public class MyFileSystemManager implements FileSystemManager {
 	 * @return
 	 */
 	public Directory addDirectory(String name, Directory parent) {
-		return new DirectoryImpl(name, parent,
+		DirectoryImpl directoryImpl = new DirectoryImpl(name, parent,
 				new ArrayList<FileSystemElement>());
+		parent.add(directoryImpl);
+        return directoryImpl;
 	}
 
 	/**
