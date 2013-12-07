@@ -285,15 +285,15 @@ public class MyFileSystemManagerTest {
 		@SuppressWarnings("unused")
 		TextDocument wordWorld = fileSystemManager.addTextFile("World.doc", draft, 3040, TextEncoding.WORD, 30);
 
-		SearchCriteria<TextDocument> criteria1 = new PageRangeCriteria<TextDocument>(15, 25);
-		SearchCriteria<TextDocument> criteria2 = new NameSearchCriteria<TextDocument>("Hello.pdf");
-		SearchCriteria<TextDocument> andSearchCriteria = new SearchCriteriaBuilder<TextDocument>().set(criteria1).and(criteria2).getSearchCriteria();
+		SearchCriteria<FileSystemElement> criteria1 = new PageRangeCriteria<FileSystemElement>(15, 25);
+		SearchCriteria<FileSystemElement> criteria2 = new NameSearchCriteria<FileSystemElement>("Hello.pdf");
+		SearchCriteria<FileSystemElement> andSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>().set(criteria1).and(criteria2).getSearchCriteria();
 		Set<TextDocument> matches = fileSystemManager.findTextFiles(andSearchCriteria);
 		Assert.assertNotNull(matches);
 		Assert.assertEquals(1, matches.size());
 		Assert.assertTrue(matches.contains(pdfHello));
 
-		SearchCriteria<TextDocument> orSearchCriteria = new SearchCriteriaBuilder<TextDocument>().set(criteria1).or(criteria2).getSearchCriteria();
+		SearchCriteria<FileSystemElement> orSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>().set(criteria1).or(criteria2).getSearchCriteria();
 		matches = fileSystemManager.findTextFiles(orSearchCriteria);
 		Assert.assertNotNull(matches);
 		Assert.assertEquals(2, matches.size());
