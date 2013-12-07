@@ -7,11 +7,21 @@ public class CommandManager {
 	private Stack<Command> commandStack = new Stack<>();
 
 	public void executeCommand(Command command) {
-		command.
-
+		
+		// execute command
+		command.execute();
+		
+		// add to stack
+		commandStack.push(command);
 	}
 
 	public void undo() {
 
+		// get last command
+		Command command = commandStack.pop();
+		
+		// undo
+		command.revert();
+		
 	}
 }
