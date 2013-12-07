@@ -232,15 +232,45 @@ public class MyFileSystemManagerTest {
 		Assert.assertEquals(0, fileSystemManager.getRoot().getElements().size());
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.prodyna.esd.filemanager.MyFileSystemManager#move(com.prodyna.esd.filemanager.model.FileSystemElement, com.prodyna.esd.filemanager.model.Directory)}
-	 * .
-	 */
-	@Test
-	public void testMove() {
-		fail("Not yet implemented");
-	}
+    /**
+     * Test method for
+     * {@link com.prodyna.esd.filemanager.MyFileSystemManager#move(com.prodyna.esd.filemanager.model.FileSystemElement, com.prodyna.esd.filemanager.model.Directory)}
+     * .
+     */
+    @Test
+    public void testMove() {
+        
+        //create directory structure
+        Directory dirWindows = fileSystemManager.addDirectory("windows", fileSystemManager.getRoot());
+        Directory dirWindowsSystem32 = fileSystemManager.addDirectory("system32", dirWindows);
+        Directory dirWindowsSystem32Drivers = fileSystemManager.addDirectory("drivers", dirWindowsSystem32);
+        Directory dirReadTheseArticles = fileSystemManager.addDirectory("readTheseArticles", fileSystemManager.getRoot());
+        Directory dirBackup = fileSystemManager.addDirectory("backup", fileSystemManager.getRoot());
+        
+        fileSystemManager.addTextFile("readme.pdf", dirWindows, 1000, TextEncoding.PDF, 5);
+        fileSystemManager.addTextFile("readregistry.dll", dirWindowsSystem32, 1000, TextEncoding.UTF8, 5);
+        fileSystemManager.addTextFile("svchost.dll", dirWindowsSystem32, 1000, TextEncoding.UTF8, 5);
+        fileSystemManager.addTextFile("system32.dll", dirWindowsSystem32, 1000, TextEncoding.UTF8, 5);
+        fileSystemManager.addTextFile("direct3d.dll", dirWindowsSystem32Drivers, 1000, TextEncoding.UTF8, 5);
+        fileSystemManager.addTextFile("Effects of prolonged aspirin use", dirReadTheseArticles, 1000, TextEncoding.PDF, 5);
+        
+        Assert.assertEquals(3, fileSystemManager.getRoot().getElements().size());
+        Assert.assertEquals(2, dirWindows.getElements().size());
+        Assert.assertEquals(4, dirWindowsSystem32.getElements().size());
+        Assert.assertEquals(1, dirWindowsSystem32Drivers.getElements().size());
+        Assert.assertEquals(1, dirReadTheseArticles.getElements().size());
+        Assert.assertEquals(0, dirBackup.getElements().size());
+        fileSystemManager.move(new SearchCriteriaBuilder<FileSystemElement>().set(new NameSearchCriteria<FileSystemElement>("read")).getSearchCriteria(), dirBackup);
+        
+        Assert.assertEquals(1, fileSystemManager.getRoot().getElements().size());
+        Assert.assertEquals(1, dirWindows.getElements().size());
+        Assert.assertEquals(3, dirWindowsSystem32.getElements().size());
+        Assert.assertEquals(1, dirWindowsSystem32Drivers.getElements().size());
+        Assert.assertEquals(1, dirReadTheseArticles.getElements().size());
+        Assert.assertEquals(3, dirBackup.getElements().size());
+        
+        
+    }
 
 	/**
 	 * Test method for
