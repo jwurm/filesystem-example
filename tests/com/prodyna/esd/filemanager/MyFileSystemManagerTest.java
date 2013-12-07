@@ -48,6 +48,7 @@ public class MyFileSystemManagerTest {
 	@Before
 	public void setUp() throws Exception {
 		fileSystemManager = MyFileSystemManager.getInstance();
+	    fileSystemManager.getRoot().getElements().clear();
 	}
 
 	/**
@@ -239,7 +240,6 @@ public class MyFileSystemManagerTest {
      */
     @Test
     public void testMove() {
-        
         //create directory structure
         Directory dirWindows = fileSystemManager.addDirectory("windows", fileSystemManager.getRoot());
         Directory dirWindowsSystem32 = fileSystemManager.addDirectory("system32", dirWindows);
@@ -260,9 +260,9 @@ public class MyFileSystemManagerTest {
         Assert.assertEquals(1, dirWindowsSystem32Drivers.getElements().size());
         Assert.assertEquals(1, dirReadTheseArticles.getElements().size());
         Assert.assertEquals(0, dirBackup.getElements().size());
-        fileSystemManager.move(new SearchCriteriaBuilder<FileSystemElement>().set(new NameSearchCriteria<FileSystemElement>("read")).getSearchCriteria(), dirBackup);
+        fileSystemManager.move(new SearchCriteriaBuilder<FileSystemElement>().set(new NameSearchCriteria<FileSystemElement>("read.*")).getSearchCriteria(), dirBackup);
         
-        Assert.assertEquals(1, fileSystemManager.getRoot().getElements().size());
+        Assert.assertEquals(2, fileSystemManager.getRoot().getElements().size());
         Assert.assertEquals(1, dirWindows.getElements().size());
         Assert.assertEquals(3, dirWindowsSystem32.getElements().size());
         Assert.assertEquals(1, dirWindowsSystem32Drivers.getElements().size());
@@ -279,6 +279,8 @@ public class MyFileSystemManagerTest {
 	 */
 	@Test
 	public void testFindString() {
+
+	    
 		Directory root = fileSystemManager.getRoot();
 
 		@SuppressWarnings("unused")
