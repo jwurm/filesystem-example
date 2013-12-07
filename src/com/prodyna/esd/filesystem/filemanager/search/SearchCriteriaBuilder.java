@@ -19,7 +19,11 @@ import java.util.List;
  */
 public class SearchCriteriaBuilder<T>  {
     
-    SearchCriteria<T> rootCriteria;
+    private SearchCriteria<T> rootCriteria;
+    
+    public SearchCriteriaBuilder(){
+        rootCriteria=new AlwaysFalseCriteria<T>();
+    }
 
     /**
      * @param criteria1
