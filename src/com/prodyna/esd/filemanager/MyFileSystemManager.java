@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.prodyna.esd.filemanager.command.CommandManager;
 import com.prodyna.esd.filemanager.event.EventMediator;
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
@@ -47,6 +48,8 @@ public class MyFileSystemManager implements FileSystemManager {
 
 	private EventMediator eventMediator = new EventMediator();
 
+	private CommandManager commandManager = new CommandManager();
+
 	private MyFileSystemManager() {
 	}
 
@@ -56,6 +59,10 @@ public class MyFileSystemManager implements FileSystemManager {
 
 	public EventMediator getEventMediator() {
 		return eventMediator;
+	}
+
+	public CommandManager getCommandManager() {
+		return commandManager;
 	}
 
 	/**
@@ -187,6 +194,12 @@ public class MyFileSystemManager implements FileSystemManager {
 		FileSearchVisitor visitor = new FileSearchVisitor(sc);
 		getRoot().accept(visitor);
 		return new HashSet<FileSystemElement>(visitor.getMatches());
+	}
+
+	@Override
+	public void move(SearchCriteria<FileSystemElement> searchCriteria,
+			Directory target) {
+
 	}
 
 }

@@ -10,20 +10,20 @@ import com.prodyna.esd.filemanager.model.ImageType;
 import com.prodyna.esd.filemanager.model.TextDocument;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
 import com.prodyna.esd.filemanager.observer.FileSystemListener;
+import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
 
 /**
  * 
  * <b>Project:</b> filesystem-example</br> <b>Classname:</b>
- * </br>FileSystemManager.java <b>Created:</b>
- * 06.12.2013</br>
+ * </br>FileSystemManager.java <b>Created:</b> 06.12.2013</br>
  * 
  * @author Jens Wurm
  * 
- *         Beschreibung: 
+ *         Beschreibung:
  */
 public interface FileSystemManager {
 
-    void addListener(FileSystemListener fileSystemListener);
+	void addListener(FileSystemListener fileSystemListener);
 
 	void removeListener(FileSystemListener listener);
 
@@ -38,5 +38,7 @@ public interface FileSystemManager {
 			ImageType gif, int j, int k);
 
 	void removeFileSystemElement(FileSystemElement fse);
+
+	void move(SearchCriteria<FileSystemElement> searchCriteria, Directory target);
 
 }
