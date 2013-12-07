@@ -14,9 +14,11 @@ import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
  * @author fassmus
  * 
  */
-public class FileAndDirectorySearchVisitor extends SearchVisitor<FileSystemElement> {
+public class FileAndDirectorySearchVisitor extends
+		SearchVisitor<FileSystemElement> {
 
-	public FileAndDirectorySearchVisitor(SearchCriteria<FileSystemElement> criteria) {
+	public FileAndDirectorySearchVisitor(
+			SearchCriteria<FileSystemElement> criteria) {
 		super(criteria);
 	}
 
@@ -27,6 +29,7 @@ public class FileAndDirectorySearchVisitor extends SearchVisitor<FileSystemEleme
 
 	@Override
 	public void visit(Directory directoryImpl) {
+		matches(directoryImpl);
 		super.visit(directoryImpl);
 	}
 
