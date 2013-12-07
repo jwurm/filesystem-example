@@ -9,7 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.prodyna.esd.filemanager.command.Command;
 import com.prodyna.esd.filemanager.command.CommandManager;
+import com.prodyna.esd.filemanager.command.MoveCommand;
 import com.prodyna.esd.filemanager.event.EventMediator;
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
@@ -199,6 +201,17 @@ public class MyFileSystemManager implements FileSystemManager {
 	@Override
 	public void move(SearchCriteria<FileSystemElement> searchCriteria,
 			Directory target) {
+	    
+	    FileSearchVisitor visitor = new FileSearchVisitor(searchCriteria);
+	    root.accept(visitor);
+	    
+	    List<FileSystemElement> matches = visitor.getMatches();
+
+        for (FileSystemElement curr : matches) {
+
+            Command command=new MoveCommand(curr.getParentDirectory(), curr, target);
+            commandManager.executeCommand(command);
+        }
 
 	}
 
