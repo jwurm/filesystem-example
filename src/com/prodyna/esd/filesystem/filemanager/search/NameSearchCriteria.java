@@ -3,9 +3,9 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
+import java.util.regex.Pattern;
+
 import com.prodyna.esd.filemanager.model.FileSystemElement;
-import com.prodyna.esd.filemanager.model.ImageFile;
-import com.prodyna.esd.filemanager.model.TextDocument;
 
 /**
  * 
@@ -17,13 +17,15 @@ import com.prodyna.esd.filemanager.model.TextDocument;
  * 
  *         Beschreibung: 
  */
-public class NameSearchCriteria<T> implements SearchCriteria<T> {
+public class NameSearchCriteria<T extends FileSystemElement> implements SearchCriteria<T> {
 
+	private String value;
+	
     /**
      * @param string
      */
     public NameSearchCriteria(String string) {
-        // TODO Auto-generated constructor stub
+    	this.value = string;
     }
 
     
@@ -32,7 +34,6 @@ public class NameSearchCriteria<T> implements SearchCriteria<T> {
      * @return
      */
     public boolean matches(T file) {
-        // TODO Auto-generated method stub
-        return false;
+    	return Pattern.matches(value, file.getName() );
     }
 }

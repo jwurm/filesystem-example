@@ -27,7 +27,9 @@ import com.prodyna.esd.filemanager.model.impl.TextFileImpl;
 import com.prodyna.esd.filemanager.model.impl.TextFileImpl.TextEncoding;
 import com.prodyna.esd.filemanager.observer.FileSystemListener;
 import com.prodyna.esd.filemanager.visitor.FileSearchVisitor;
+import com.prodyna.esd.filesystem.filemanager.search.NameSearchCriteria;
 import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
+import com.prodyna.esd.filesystem.filemanager.search.SearchCriteriaBuilder;
 
 /**
  * 
@@ -62,8 +64,10 @@ public class MyFileSystemManager implements FileSystemManager {
 	 * @return
 	 */
 	public Directory addDirectory(String name, Directory parent) {
-		return new DirectoryImpl(name, parent,
+		DirectoryImpl directoryImpl = new DirectoryImpl(name, parent,
 				new ArrayList<FileSystemElement>());
+		parent.add(directoryImpl);
+        return directoryImpl;
 	}
 
 	/**
@@ -160,5 +164,16 @@ public class MyFileSystemManager implements FileSystemManager {
 		Directory parent = fse.getParentDirectory();
 		parent.remove(fse);
 	}
+
+    /**
+     * @param string
+     * @return
+     */
+    public Set<FileSystemElement> find(String string) {
+        SearchCriteria<FileSystemElement> sc = new SearchCriteriaBuilder<FileSystemElement>().set(new NameSearchCriteria<FileSystemElement>(string)).getSearchCriteria();
+        FileSearchVisitor visitor = new FileSearchVisitor(sc);
+        getRoot().accept(visitor);
+        return new HashSet<FileSystemElement>(visitor.getMatches());
+    }
 
 }
