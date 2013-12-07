@@ -1,6 +1,5 @@
 package com.prodyna.esd.filesystem.filemanager.search;
 
-<<<<<<< HEAD
 public class AndSearchCriteria<T> implements SearchCriteria<T>{
     
     /**
@@ -45,13 +44,5 @@ public class AndSearchCriteria<T> implements SearchCriteria<T>{
     public boolean matches(T element) {
         return sc1.matches(element)&&sc2.matches(element);
     }
-=======
-/**
- * 
- * @author jtrumpfheller
- *
- */
-public class AndSearchCriteria {
->>>>>>> e6583178ceb3f1f312b215f6ead64337502071e8
 
 }
