@@ -3,6 +3,9 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * 
@@ -15,13 +18,15 @@ package com.prodyna.esd.filesystem.filemanager.search;
  *         Beschreibung: 
  */
 public class SearchCriteriaBuilder<T>  {
+    
+    SearchCriteria<T> rootCriteria;
 
     /**
      * @param criteria1
      * @return
      */
     public SearchCriteriaBuilder<T> set(SearchCriteria<T> criteria1) {
-        // TODO Auto-generated method stub
+        rootCriteria=criteria1;
         return this;
     }
 
@@ -30,7 +35,8 @@ public class SearchCriteriaBuilder<T>  {
      * @return
      */
     public SearchCriteriaBuilder<T> and(SearchCriteria<T> criteria2) {
-        // TODO Auto-generated method stub
+        AndSearchCriteria andSearchCriteria = new AndSearchCriteria(rootCriteria, criteria2);
+        rootCriteria=andSearchCriteria;
         return this;
     }
 
@@ -38,8 +44,7 @@ public class SearchCriteriaBuilder<T>  {
      * @return
      */
     public SearchCriteria<T> getSearchCriteria() {
-        // TODO Auto-generated method stub
-        return null;
+        return rootCriteria;
     }
 
     /**
@@ -47,7 +52,8 @@ public class SearchCriteriaBuilder<T>  {
      * @return
      */
     public SearchCriteriaBuilder<T> or(SearchCriteria<T> criteria2) {
-        // TODO Auto-generated method stub
+        OrSearchCriteria<T> orSearchCriteria = new OrSearchCriteria<T>(rootCriteria, criteria2);
+        rootCriteria=orSearchCriteria;
         return this;
     }
 
