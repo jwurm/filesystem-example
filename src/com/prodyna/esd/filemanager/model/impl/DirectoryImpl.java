@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.prodyna.esd.filemanager.MyFileSystemManager;
 import com.prodyna.esd.filemanager.event.EventBuilder;
-import com.prodyna.esd.filemanager.event.EventMediator;
 import com.prodyna.esd.filemanager.event.EventType;
 import com.prodyna.esd.filemanager.event.FileSystemEvent;
 import com.prodyna.esd.filemanager.model.Directory;
@@ -67,7 +67,8 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 		elements.add(fileSystemElement);
 		FileSystemEvent event = EventBuilder.build(fileSystemElement, this,
 				EventType.ADDED);
-		EventMediator.getInstance().notifyListeners(event);
+		MyFileSystemManager.getInstance().getEventMediator()
+				.notifyListeners(event);
 	}
 
 	/**
@@ -81,7 +82,8 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 		elements.remove(fileSystemElement);
 		FileSystemEvent event = EventBuilder.build(fileSystemElement, this,
 				EventType.REMOVED);
-		EventMediator.getInstance().notifyListeners(event);
+		MyFileSystemManager.getInstance().getEventMediator()
+				.notifyListeners(event);
 	}
 
 	@Override

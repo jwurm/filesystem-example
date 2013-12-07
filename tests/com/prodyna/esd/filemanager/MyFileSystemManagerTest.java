@@ -30,7 +30,7 @@ import com.prodyna.esd.filesystem.filemanager.search.SearchCriteria;
 import com.prodyna.esd.filesystem.filemanager.search.SearchCriteriaBuilder;
 
 /**
- * Unit tests to prove {@link MyFileSystemManager} functions working correctly. 
+ * Unit tests to prove {@link MyFileSystemManager} functions working correctly.
  * 
  * @author Oliver Schimmel
  */
@@ -47,7 +47,7 @@ public class MyFileSystemManagerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		fileSystemManager = new MyFileSystemManager();
+		fileSystemManager = MyFileSystemManager.getInstance();
 	}
 
 	/**
@@ -59,17 +59,19 @@ public class MyFileSystemManagerTest {
 	public void testAddListener() {
 		final Set<FileSystemEvent> events = new LinkedHashSet<FileSystemEvent>();
 		fileSystemManager.addListener(new FileSystemListener() {
-			
+
 			@Override
 			public void eventCallback(FileSystemEvent event) {
 				events.add(event);
 			}
 		});
-		
+
 		Assert.assertEquals(0, events.size());
-		fileSystemManager.addTextFile("test1", fileSystemManager.getRoot(), 1000, TextEncoding.PDF, 10);
+		fileSystemManager.addTextFile("test1", fileSystemManager.getRoot(),
+				1000, TextEncoding.PDF, 10);
 		Assert.assertEquals(1, events.size());
-		fileSystemManager.addTextFile("test2", fileSystemManager.getRoot(), 1000, TextEncoding.PDF, 10);
+		fileSystemManager.addTextFile("test2", fileSystemManager.getRoot(),
+				1000, TextEncoding.PDF, 10);
 		Assert.assertEquals(2, events.size());
 	}
 
@@ -88,12 +90,14 @@ public class MyFileSystemManagerTest {
 			}
 		};
 		fileSystemManager.addListener(listener);
-		
+
 		Assert.assertEquals(0, events.size());
-		fileSystemManager.addTextFile("test1", fileSystemManager.getRoot(), 1000, TextEncoding.PDF, 10);
+		fileSystemManager.addTextFile("test1", fileSystemManager.getRoot(),
+				1000, TextEncoding.PDF, 10);
 		Assert.assertEquals(1, events.size());
 		fileSystemManager.removeListener(listener);
-		fileSystemManager.addTextFile("test2", fileSystemManager.getRoot(), 1000, TextEncoding.PDF, 10);
+		fileSystemManager.addTextFile("test2", fileSystemManager.getRoot(),
+				1000, TextEncoding.PDF, 10);
 		Assert.assertEquals(1, events.size());
 	}
 
@@ -126,21 +130,25 @@ public class MyFileSystemManagerTest {
 
 	/**
 	 * Test method for
-	 * {@link com.prodyna.esd.filemanager.MyFileSystemManager#demo()}
-	 * .
+	 * {@link com.prodyna.esd.filemanager.MyFileSystemManager#demo()} .
 	 */
 	@Test
 	public void testDirectoryDemoVisitor() {
 		Directory root = fileSystemManager.getRoot();
 
-		Directory directory = fileSystemManager.addDirectory("directory 1", root);
-		Directory directory2 = fileSystemManager.addDirectory("directory 2", root);
-		fileSystemManager.addTextFile("text", directory, 1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
-		fileSystemManager.addImageFile("image", directory2, 1000, ImageType.GIF, 640, 480);
+		Directory directory = fileSystemManager.addDirectory("directory 1",
+				root);
+		Directory directory2 = fileSystemManager.addDirectory("directory 2",
+				root);
+		fileSystemManager.addTextFile("text", directory, 1000,
+				TextEncoding.UTF8, NUMBER_OF_PAGES);
+		fileSystemManager.addImageFile("image", directory2, 1000,
+				ImageType.GIF, 640, 480);
 
 		DemoVisitor demoVisitor = new DemoVisitor();
 		root.accept(demoVisitor);
 	}
+
 	/**
 	 * Test method for
 	 * {@link com.prodyna.esd.filemanager.MyFileSystemManager#addDirectory(java.lang.String, com.prodyna.esd.filemanager.model.Directory)}
@@ -150,10 +158,14 @@ public class MyFileSystemManagerTest {
 	public void testDirectoryListVisitor() {
 		Directory root = fileSystemManager.getRoot();
 
-		Directory directory = fileSystemManager.addDirectory("directory 1", root);
-		Directory directory2 = fileSystemManager.addDirectory("directory 2", root);
-		fileSystemManager.addTextFile("text", directory, 1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
-		fileSystemManager.addImageFile("image", directory2, 1000, ImageType.GIF, 640, 480);
+		Directory directory = fileSystemManager.addDirectory("directory 1",
+				root);
+		Directory directory2 = fileSystemManager.addDirectory("directory 2",
+				root);
+		fileSystemManager.addTextFile("text", directory, 1000,
+				TextEncoding.UTF8, NUMBER_OF_PAGES);
+		fileSystemManager.addImageFile("image", directory2, 1000,
+				ImageType.GIF, 640, 480);
 
 		fileSystemManager.list();
 	}
@@ -167,7 +179,8 @@ public class MyFileSystemManagerTest {
 	public void testAddTextFile() {
 		Directory root = fileSystemManager.getRoot();
 
-		TextDocument textDocument = fileSystemManager.addTextFile("text", root, 1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
+		TextDocument textDocument = fileSystemManager.addTextFile("text", root,
+				1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
 		Assert.assertEquals("text", textDocument.getName());
 		Assert.assertEquals("/", textDocument.getParentDirectory().getName());
 	}
@@ -181,7 +194,8 @@ public class MyFileSystemManagerTest {
 	public void testAddArchiveFile() {
 		Directory root = fileSystemManager.getRoot();
 
-		ArchiveFile archiveFile = fileSystemManager.addArchiveFile("archive", root, 1000, CompressionType.JAR, 2000);
+		ArchiveFile archiveFile = fileSystemManager.addArchiveFile("archive",
+				root, 1000, CompressionType.JAR, 2000);
 		Assert.assertEquals("archive", archiveFile.getName());
 		Assert.assertEquals("/", archiveFile.getParentDirectory().getName());
 	}
@@ -195,7 +209,8 @@ public class MyFileSystemManagerTest {
 	public void testAddImageFile() {
 		Directory root = fileSystemManager.getRoot();
 
-		ImageFile imageFile = fileSystemManager.addImageFile("image", root, 1000, ImageType.GIF, 640, 480);
+		ImageFile imageFile = fileSystemManager.addImageFile("image", root,
+				1000, ImageType.GIF, 640, 480);
 		Assert.assertEquals("image", imageFile.getName());
 		Assert.assertEquals("/", imageFile.getParentDirectory().getName());
 	}
@@ -208,10 +223,11 @@ public class MyFileSystemManagerTest {
 	@Test
 	public void testRemoveFileSystemElement() {
 		Directory root = fileSystemManager.getRoot();
-		TextDocument textDocument = fileSystemManager.addTextFile("text", root, 1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
-	
+		TextDocument textDocument = fileSystemManager.addTextFile("text", root,
+				1000, TextEncoding.UTF8, NUMBER_OF_PAGES);
+
 		Assert.assertEquals(1, fileSystemManager.getRoot().getElements().size());
-		
+
 		fileSystemManager.removeFileSystemElement(textDocument);
 		Assert.assertEquals(0, fileSystemManager.getRoot().getElements().size());
 	}
@@ -240,15 +256,21 @@ public class MyFileSystemManagerTest {
 
 		Directory documents = fileSystemManager.addDirectory("documents", root);
 		@SuppressWarnings("unused")
-		TextDocument textDocument = fileSystemManager.addTextFile("Hello.txt", documents, 20, TextEncoding.UTF8, 10);
-		Directory official = fileSystemManager.addDirectory("official", documents);
-		TextDocument pdfHello = fileSystemManager.addTextFile("Hello.pdf", official, 1400, TextEncoding.PDF, 20);
+		TextDocument textDocument = fileSystemManager.addTextFile("Hello.txt",
+				documents, 20, TextEncoding.UTF8, 10);
+		Directory official = fileSystemManager.addDirectory("official",
+				documents);
+		TextDocument pdfHello = fileSystemManager.addTextFile("Hello.pdf",
+				official, 1400, TextEncoding.PDF, 20);
 		@SuppressWarnings("unused")
-		TextDocument pdfWorld = fileSystemManager.addTextFile("World.pdf", official, 1600, TextEncoding.PDF, 30);
+		TextDocument pdfWorld = fileSystemManager.addTextFile("World.pdf",
+				official, 1600, TextEncoding.PDF, 30);
 		Directory draft = fileSystemManager.addDirectory("draft", documents);
-		TextDocument wordHello = fileSystemManager.addTextFile("Hello.doc", draft, 2940, TextEncoding.WORD, 20);
+		TextDocument wordHello = fileSystemManager.addTextFile("Hello.doc",
+				draft, 2940, TextEncoding.WORD, 20);
 		@SuppressWarnings("unused")
-		TextDocument wordWorld = fileSystemManager.addTextFile("World.doc", draft, 3040, TextEncoding.WORD, 30);
+		TextDocument wordWorld = fileSystemManager.addTextFile("World.doc",
+				draft, 3040, TextEncoding.WORD, 30);
 
 		Set<FileSystemElement> matches = fileSystemManager.find("Hello.pdf");
 		Assert.assertNotNull(matches);
@@ -259,8 +281,8 @@ public class MyFileSystemManagerTest {
 		Assert.assertNotNull(matches);
 		Assert.assertEquals(3, matches.size());
 		Assert.assertTrue(matches.contains(pdfHello));
-}
-	
+	}
+
 	/**
 	 * Test method for
 	 * {@link com.prodyna.esd.filemanager.MyFileSystemManager#find(com.prodyna.esd.filemanager.SearchCriteria)}
@@ -275,25 +297,36 @@ public class MyFileSystemManagerTest {
 
 		Directory documents = fileSystemManager.addDirectory("documents", root);
 		@SuppressWarnings("unused")
-		TextDocument textDocument = fileSystemManager.addTextFile("Hello.txt", documents, 20, TextEncoding.UTF8, 10);
-		Directory official = fileSystemManager.addDirectory("official", documents);
-		TextDocument pdfHello = fileSystemManager.addTextFile("Hello.pdf", official, 1400, TextEncoding.PDF, 20);
+		TextDocument textDocument = fileSystemManager.addTextFile("Hello.txt",
+				documents, 20, TextEncoding.UTF8, 10);
+		Directory official = fileSystemManager.addDirectory("official",
+				documents);
+		TextDocument pdfHello = fileSystemManager.addTextFile("Hello.pdf",
+				official, 1400, TextEncoding.PDF, 20);
 		@SuppressWarnings("unused")
-		TextDocument pdfWorld = fileSystemManager.addTextFile("World.pdf", official, 1600, TextEncoding.PDF, 30);
+		TextDocument pdfWorld = fileSystemManager.addTextFile("World.pdf",
+				official, 1600, TextEncoding.PDF, 30);
 		Directory draft = fileSystemManager.addDirectory("draft", documents);
-		TextDocument wordHello = fileSystemManager.addTextFile("Hello.doc", draft, 2940, TextEncoding.WORD, 20);
+		TextDocument wordHello = fileSystemManager.addTextFile("Hello.doc",
+				draft, 2940, TextEncoding.WORD, 20);
 		@SuppressWarnings("unused")
-		TextDocument wordWorld = fileSystemManager.addTextFile("World.doc", draft, 3040, TextEncoding.WORD, 30);
+		TextDocument wordWorld = fileSystemManager.addTextFile("World.doc",
+				draft, 3040, TextEncoding.WORD, 30);
 
-		SearchCriteria<FileSystemElement> criteria1 = new PageRangeCriteria<FileSystemElement>(15, 25);
-		SearchCriteria<FileSystemElement> criteria2 = new NameSearchCriteria<FileSystemElement>("Hello.pdf");
-		SearchCriteria<FileSystemElement> andSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>().set(criteria1).and(criteria2).getSearchCriteria();
-		Set<TextDocument> matches = fileSystemManager.findTextFiles(andSearchCriteria);
+		SearchCriteria<FileSystemElement> criteria1 = new PageRangeCriteria<FileSystemElement>(
+				15, 25);
+		SearchCriteria<FileSystemElement> criteria2 = new NameSearchCriteria<FileSystemElement>(
+				"Hello.pdf");
+		SearchCriteria<FileSystemElement> andSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>()
+				.set(criteria1).and(criteria2).getSearchCriteria();
+		Set<TextDocument> matches = fileSystemManager
+				.findTextFiles(andSearchCriteria);
 		Assert.assertNotNull(matches);
 		Assert.assertEquals(1, matches.size());
 		Assert.assertTrue(matches.contains(pdfHello));
 
-		SearchCriteria<FileSystemElement> orSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>().set(criteria1).or(criteria2).getSearchCriteria();
+		SearchCriteria<FileSystemElement> orSearchCriteria = new SearchCriteriaBuilder<FileSystemElement>()
+				.set(criteria1).or(criteria2).getSearchCriteria();
 		matches = fileSystemManager.findTextFiles(orSearchCriteria);
 		Assert.assertNotNull(matches);
 		Assert.assertEquals(2, matches.size());

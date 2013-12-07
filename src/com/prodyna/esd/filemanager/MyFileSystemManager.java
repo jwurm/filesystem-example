@@ -39,7 +39,24 @@ import com.prodyna.esd.filesystem.filemanager.search.SearchCriteriaBuilder;
  */
 public class MyFileSystemManager implements FileSystemManager {
 
+	private final static class LazyHolder {
+		private final static MyFileSystemManager INSTANCE = new MyFileSystemManager();
+	}
+
 	private Directory root;
+
+	private EventMediator eventMediator = new EventMediator();
+
+	private MyFileSystemManager() {
+	}
+
+	public static MyFileSystemManager getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	public EventMediator getEventMediator() {
+		return eventMediator;
+	}
 
 	/**
 	 * @return
@@ -130,7 +147,7 @@ public class MyFileSystemManager implements FileSystemManager {
 	 */
 	@Override
 	public void addListener(FileSystemListener fileSystemListener) {
-		EventMediator.getInstance().addListener(fileSystemListener);
+		eventMediator.addListener(fileSystemListener);
 	}
 
 	/**
@@ -150,7 +167,7 @@ public class MyFileSystemManager implements FileSystemManager {
 
 	@Override
 	public void removeListener(FileSystemListener listener) {
-		EventMediator.getInstance().removeListener(listener);
+		eventMediator.removeListener(listener);
 	}
 
 	@Override

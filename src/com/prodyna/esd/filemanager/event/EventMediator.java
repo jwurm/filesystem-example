@@ -6,15 +6,7 @@ import com.prodyna.esd.filemanager.observer.ObserverHelper;
 
 public class EventMediator implements Observable {
 
-	private final static class LazyHolder {
-		private final static EventMediator INSTANCE = new EventMediator();
-	}
-
-	private EventMediator() {
-	}
-
-	public static EventMediator getInstance() {
-		return LazyHolder.INSTANCE;
+	public EventMediator() {
 	}
 
 	private ObserverHelper helper = new ObserverHelper();
