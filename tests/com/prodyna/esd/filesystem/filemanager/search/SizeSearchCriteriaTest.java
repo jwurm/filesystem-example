@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.prodyna.esd.filemanager.model.FileSystemElement;
 import com.prodyna.esd.filemanager.model.FileSystemFactory;
 import com.prodyna.esd.filemanager.model.TextDocument;
 import com.prodyna.esd.filemanager.model.impl.FileSystemFactoryImpl;
@@ -35,7 +36,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMin() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
+		SizeSearchCriteria<FileSystemElement> criteria = new SizeSearchCriteria<FileSystemElement>();
 		criteria.min(110);
 		Assert.assertFalse(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
@@ -44,7 +45,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMax() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
+		SizeSearchCriteria<FileSystemElement> criteria = new SizeSearchCriteria<FileSystemElement>();
 		criteria.max(250);
 		Assert.assertTrue(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
@@ -53,7 +54,7 @@ public class SizeSearchCriteriaTest {
 
 	@Test
 	public void testMinMax() {
-		SizeSearchCriteria<TextDocument> criteria = new SizeSearchCriteria<>();
+		SizeSearchCriteria<FileSystemElement> criteria = new SizeSearchCriteria<FileSystemElement>();
 		criteria.min(110).max(220);
 		Assert.assertFalse(criteria.matches(textFile1));		
 		Assert.assertTrue(criteria.matches(textFile2));
