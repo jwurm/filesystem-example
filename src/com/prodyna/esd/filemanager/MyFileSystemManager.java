@@ -9,10 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.prodyna.esd.filemanager.event.EventBuilder;
 import com.prodyna.esd.filemanager.event.EventMediator;
-import com.prodyna.esd.filemanager.event.EventType;
-import com.prodyna.esd.filemanager.event.FileSystemEvent;
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
 import com.prodyna.esd.filemanager.model.Directory;
@@ -51,9 +48,6 @@ public class MyFileSystemManager implements FileSystemManager {
 		if (root == null) {
 			root = new DirectoryImpl("/", null,
 					new ArrayList<FileSystemElement>());
-			FileSystemEvent event = EventBuilder.build(root, null,
-					EventType.ADDED);
-			EventMediator.getInstance().notifyListeners(event);
 		}
 		return root;
 	}
@@ -67,7 +61,7 @@ public class MyFileSystemManager implements FileSystemManager {
 		DirectoryImpl directoryImpl = new DirectoryImpl(name, parent,
 				new ArrayList<FileSystemElement>());
 		parent.add(directoryImpl);
-        return directoryImpl;
+		return directoryImpl;
 	}
 
 	/**
@@ -165,15 +159,17 @@ public class MyFileSystemManager implements FileSystemManager {
 		parent.remove(fse);
 	}
 
-    /**
-     * @param string
-     * @return
-     */
-    public Set<FileSystemElement> find(String string) {
-        SearchCriteria<FileSystemElement> sc = new SearchCriteriaBuilder<FileSystemElement>().set(new NameSearchCriteria<FileSystemElement>(string)).getSearchCriteria();
-        FileSearchVisitor visitor = new FileSearchVisitor(sc);
-        getRoot().accept(visitor);
-        return new HashSet<FileSystemElement>(visitor.getMatches());
-    }
+	/**
+	 * @param string
+	 * @return
+	 */
+	public Set<FileSystemElement> find(String string) {
+		SearchCriteria<FileSystemElement> sc = new SearchCriteriaBuilder<FileSystemElement>()
+				.set(new NameSearchCriteria<FileSystemElement>(string))
+				.getSearchCriteria();
+		FileSearchVisitor visitor = new FileSearchVisitor(sc);
+		getRoot().accept(visitor);
+		return new HashSet<FileSystemElement>(visitor.getMatches());
+	}
 
 }

@@ -3,6 +3,9 @@
  */
 package com.prodyna.esd.filesystem.filemanager.search;
 
+import com.prodyna.esd.filemanager.model.FileSystemElement;
+import com.prodyna.esd.filemanager.model.TextDocument;
+
 /**
  * 
  * <b>Project:</b> filesystem-example</br> <b>Classname:</b>
@@ -13,14 +16,18 @@ package com.prodyna.esd.filesystem.filemanager.search;
  * 
  *         Beschreibung: 
  */
-public class PageRangeCriteria<T> implements SearchCriteria<T>{
+public class PageRangeCriteria<T extends FileSystemElement> implements SearchCriteria<T>{
 
+	private long min;
+	private long max;
+	
     /**
      * @param i
      * @param j
      */
     public PageRangeCriteria(int i, int j) {
-        // TODO Auto-generated constructor stub
+        this.min = i;
+        this.max = j;
     }
 
     /* (non-Javadoc)
@@ -28,7 +35,21 @@ public class PageRangeCriteria<T> implements SearchCriteria<T>{
      */
     @Override
     public boolean matches(T element) {
-        // TODO Auto-generated method stub
-        return false;
+    	
+    	if (!(element instanceof TextDocument)){
+    		return false;
+    	}
+    	
+    	long numberOfPages = (((TextDocument) element).getNumberOfPages());
+    	
+    	if (numberOfPages < min){
+    		return false;
+    	}
+    	
+    	if (numberOfPages > max){
+    		return false;
+    	}
+    	
+        return true;
     }
 }
