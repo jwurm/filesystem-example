@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.prodyna.esd.filemanager.command.CommandManager;
 import com.prodyna.esd.filemanager.event.FileSystemEvent;
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
@@ -270,6 +271,15 @@ public class MyFileSystemManagerTest {
         Assert.assertEquals(3, dirBackup.getElements().size());
         
         
+        fileSystemManager.undo();
+        fileSystemManager.undo();
+        fileSystemManager.undo();
+        Assert.assertEquals(3, fileSystemManager.getRoot().getElements().size());
+        Assert.assertEquals(2, dirWindows.getElements().size());
+        Assert.assertEquals(4, dirWindowsSystem32.getElements().size());
+        Assert.assertEquals(1, dirWindowsSystem32Drivers.getElements().size());
+        Assert.assertEquals(1, dirReadTheseArticles.getElements().size());
+        Assert.assertEquals(0, dirBackup.getElements().size());
     }
 
 	/**

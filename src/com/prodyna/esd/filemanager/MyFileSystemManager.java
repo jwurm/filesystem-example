@@ -216,4 +216,13 @@ public class MyFileSystemManager implements FileSystemManager {
 
 	}
 
+    /* (non-Javadoc)
+     * @see com.prodyna.esd.filemanager.FileSystemManager#undo()
+     */
+    @Override
+    public void undo() {
+        commandManager.undo();
+        
+    }
+
 }

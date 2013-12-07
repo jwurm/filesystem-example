@@ -41,4 +41,6 @@ public interface FileSystemManager {
 
 	void move(SearchCriteria<FileSystemElement> searchCriteria, Directory target);
 
+    void undo();
+
 }
