@@ -9,7 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.prodyna.esd.filemanager.event.EventBuilder;
 import com.prodyna.esd.filemanager.event.EventMediator;
+import com.prodyna.esd.filemanager.event.EventType;
+import com.prodyna.esd.filemanager.event.FileSystemEvent;
 import com.prodyna.esd.filemanager.model.ArchiveFile;
 import com.prodyna.esd.filemanager.model.CompressionType;
 import com.prodyna.esd.filemanager.model.Directory;
@@ -46,6 +49,9 @@ public class MyFileSystemManager implements FileSystemManager {
 		if (root == null) {
 			root = new DirectoryImpl("/", null,
 					new ArrayList<FileSystemElement>());
+			FileSystemEvent event = EventBuilder.build(root, null,
+					EventType.ADDED);
+			EventMediator.getInstance().notifyListeners(event);
 		}
 		return root;
 	}

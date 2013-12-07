@@ -8,14 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.prodyna.esd.filemanager.event.DirectoryAddedEvent;
-import com.prodyna.esd.filemanager.event.DirectoryRemovedEvent;
+import com.prodyna.esd.filemanager.event.EventBuilder;
 import com.prodyna.esd.filemanager.event.EventMediator;
-import com.prodyna.esd.filemanager.event.FileAddedEvent;
-import com.prodyna.esd.filemanager.event.FileRemovedEvent;
+import com.prodyna.esd.filemanager.event.EventType;
 import com.prodyna.esd.filemanager.event.FileSystemEvent;
 import com.prodyna.esd.filemanager.model.Directory;
-import com.prodyna.esd.filemanager.model.File;
 import com.prodyna.esd.filemanager.model.FileSystemElement;
 import com.prodyna.esd.filemanager.visitor.FileSystemElementVisitor;
 
@@ -68,7 +65,9 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 	@Override
 	public void add(FileSystemElement fileSystemElement) {
 		elements.add(fileSystemElement);
-		sendAddEvent(fileSystemElement);
+		FileSystemEvent event = EventBuilder.build(fileSystemElement, this,
+				EventType.ADDED);
+		EventMediator.getInstance().notifyListeners(event);
 	}
 
 	/**
@@ -80,31 +79,8 @@ public class DirectoryImpl extends FileSystemElementImpl implements Directory {
 	@Override
 	public void remove(FileSystemElement fileSystemElement) {
 		elements.remove(fileSystemElement);
-		sendRemoveEvent(fileSystemElement);
-	}
-
-	private void sendRemoveEvent(FileSystemElement fileSystemElement) {
-		FileSystemEvent event;
-		if (fileSystemElement instanceof File) {
-			event = new FileRemovedEvent(fileSystemElement, this);
-		} else if (fileSystemElement instanceof Directory) {
-			event = new DirectoryRemovedEvent(fileSystemElement, this);
-		} else {
-			event = null;
-		}
-
-		EventMediator.getInstance().notifyListeners(event);
-	}
-
-	private void sendAddEvent(FileSystemElement fileSystemElement) {
-		FileSystemEvent event;
-		if (fileSystemElement instanceof File) {
-			event = new FileAddedEvent(fileSystemElement, this);
-		} else if (fileSystemElement instanceof Directory) {
-			event = new DirectoryAddedEvent(fileSystemElement, this);
-		} else {
-			event = null;
-		}
+		FileSystemEvent event = EventBuilder.build(fileSystemElement, this,
+				EventType.REMOVED);
 		EventMediator.getInstance().notifyListeners(event);
 	}
 
