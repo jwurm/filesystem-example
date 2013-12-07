@@ -12,15 +12,9 @@ import com.prodyna.esd.filemanager.model.FileSystemElement;
  */
 public class MoveCommand implements Command {
 
-	private Directory parent;
-	private FileSystemElement subject;
-	private Directory target;
-
 	public MoveCommand(Directory parent, FileSystemElement subject,
 			Directory target) {
-		this.parent = parent;
-		this.subject = subject;
-		this.target = target;
+		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -30,8 +24,7 @@ public class MoveCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		parent.remove(subject);
-		target.add(subject);
+
 	}
 
 	/*
@@ -41,8 +34,8 @@ public class MoveCommand implements Command {
 	 */
 	@Override
 	public void revert() {
-		target.remove(subject);
-		parent.add(subject);
+		// TODO Auto-generated method stub
+
 	}
 
 }
