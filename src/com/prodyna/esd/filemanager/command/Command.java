@@ -1,5 +1,5 @@
 package com.prodyna.esd.filemanager.command;
 
-public interface ICommand {
+public interface Command {
 
 }
